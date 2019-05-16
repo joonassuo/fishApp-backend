@@ -1,6 +1,15 @@
-console.log('bitch');
-
 const form = document.querySelector('form');
+const logCatchButton = document.querySelector('.logCatchButton');
+
+form.style.display = 'none';
+
+logCatchButton.addEventListener('click', () => {
+    if(form.style.display === 'none') {
+        form.style.display = '';
+    } else {
+        form.style.display = 'none';
+    }
+})
 
 form.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -16,5 +25,6 @@ form.addEventListener('submit', (event) => {
     }    
 
     console.log(JSON.stringify(fish));
-    
+    form.style.display = 'none';
+    form.reset();
 });
