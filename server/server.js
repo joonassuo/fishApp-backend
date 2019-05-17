@@ -35,7 +35,7 @@ app.get('/fishDB', (req, res) => {
 
 
 // handle POST request
-app.post('/fish', (req, res) => {
+app.post('/submitFish', (req, res) => {
     // ....validate the data first, then:
 
     const fish = {

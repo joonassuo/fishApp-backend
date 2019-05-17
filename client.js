@@ -1,6 +1,6 @@
 const form = document.querySelector('form');
 const logCatchButton = document.querySelector('.logCatchButton');
-const API_URL = "http://localhost:5000/fish";
+const API_URL = "http://localhost:5000/submitFish";
 
 form.style.display = 'none';
 
@@ -12,7 +12,7 @@ logCatchButton.addEventListener('click', () => {
     } else {
         form.style.display = 'none';
     }
-})
+});
 
 
 // submit-button event handler
@@ -39,5 +39,8 @@ form.addEventListener('submit', (event) => {
     }).then(response => response.json())
     .then(createdFish => {
         console.log(createdFish);
-    })
+    });
+
+    form.style.display = 'none';
+    form.reset();
 });
