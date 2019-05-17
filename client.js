@@ -36,5 +36,8 @@ form.addEventListener('submit', (event) => {
         headers: {
             'content-type' : 'application/json'
         }
-    }).then(response => response.json());
+    }).then(response => response.json())
+    .then(createdFish => {
+        console.log(createdFish);
+    })
 });
