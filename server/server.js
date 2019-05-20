@@ -3,7 +3,7 @@ const cors = require('cors');
 const monk = require('monk');
 
 const db = monk('localhost/fisher-app');
-const fishDB = db.get('fishDB');
+const fishDB = db.get('fishes');
 
 const app = express();
 app.use(cors());
@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
 
 
 // GET the fishDB
-app.get('/fishDB', (req, res) => {
+app.get('/fishes', (req, res) => {
     fishDB
         .find()
         .then(fishDB => {
@@ -35,13 +35,14 @@ app.get('/fishDB', (req, res) => {
 
 
 // handle POST request
-app.post('/submitFish', (req, res) => {
+app.post('/fishes', (req, res) => {
     // ....validate the data first, then:
 
     const fish = {
         username : req.body.username,
         fishtype : req.body.fishtype,
-        weight : req.body.weight
+        weight : req.body.weight,
+        created: new Date()
     }
     console.log(fish);
 

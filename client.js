@@ -1,6 +1,7 @@
 const form = document.querySelector('form');
 const logCatchButton = document.querySelector('.logCatchButton');
-const API_URL = "http://localhost:5000/submitFish";
+const fishesContainer = document.querySelector('.fishesContainer');
+const API_URL = "http://localhost:5000/fishes";
 
 form.style.display = 'none';
 
@@ -39,8 +40,36 @@ form.addEventListener('submit', (event) => {
     }).then(response => response.json())
     .then(createdFish => {
         console.log(createdFish);
+        form.style.display = 'none';
+        form.reset();
+        fishesContainer.innerHTML = '';
+        listAllFish(); 
     });
-
-    form.style.display = 'none';
-    form.reset();
 });
+
+
+// GET all fish and list them in cards
+function listAllFish() {
+    fetch(API_URL)
+        .then(response => response.json())
+        .then(fishes => {
+            fishes.reverse();
+            fishes.forEach(fish => {
+                const div = document.createElement('div');
+                const header = document.createElement('h3');
+                const contents = document.createElement('p');
+                const created = document.createElement('small');
+
+                header.textContent = fish.username;
+                contents.textContent = fish.fishtype;
+                created.textContent = new Date(fish.created);
+
+                div.appendChild(header);
+                div.appendChild(contents);
+                div.appendChild(created);
+                fishesContainer.appendChild(div);
+
+                div.style.cssText = 'box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);margin-bottom: 2vw; padding: 2vw';
+            })
+        });
+}
