@@ -34,21 +34,32 @@ app.get('/fishes', (req, res) => {
 });
 
 
+// validate input
+function isValidFish(fish) {
+    return fish.username && fish.username.toString().trim() !== '' && fish.fishtype && fish.fishtype.toString().trim() !== '';
+}
+
+
 // handle POST request
 app.post('/fishes', (req, res) => {
-    // ....validate the data first, then:
+    if(isValidFish(req.body)) {
+        const fish = {
+            username : req.body.username.toString(),
+            fishtype : req.body.fishtype.toString(),
+            weight : req.body.weight.toString(),
+            created: new Date()
+        }
+        console.log(fish);
 
-    const fish = {
-        username : req.body.username,
-        fishtype : req.body.fishtype,
-        weight : req.body.weight,
-        created: new Date()
-    }
-    console.log(fish);
-
-    fishDB
-        .insert(fish)
-        .then(createdFish => {
-            res.json(createdFish);
+        fishDB
+            .insert(fish)
+            .then(createdFish => {
+                res.json(createdFish);
+            });
+    } else {
+        res.status(422);
+        res.json({
+            message: 'Hey! Name and Content are required!'
         });
+    }
 });

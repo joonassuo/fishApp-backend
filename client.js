@@ -30,6 +30,7 @@ form.addEventListener('submit', (event) => {
         weight
     }
 
+    
     // POST to API_URL
     fetch(API_URL, {
         method: 'POST',
@@ -62,7 +63,11 @@ function listAllFish() {
 
                 header.textContent = fish.username;
                 contents.textContent = fish.fishtype;
-                created.textContent = new Date(fish.created);
+
+                // clean up date string
+                var date = new Date(fish.created);
+                var dateShort = date.toString().substring(0, 24);
+                created.textContent = dateShort;
 
                 div.appendChild(header);
                 div.appendChild(contents);
