@@ -61,8 +61,8 @@ function listAllFish() {
                 const contents = document.createElement('p');
                 const created = document.createElement('small');
 
-                header.textContent = fish.username;
-                contents.textContent = fish.fishtype;
+                header.textContent = fish.fishtype + ' / ' + fish.weight + 'kg';
+                contents.textContent = fish.username;
 
                 // clean up date string
                 var date = new Date(fish.created);
@@ -75,6 +75,7 @@ function listAllFish() {
                 fishesContainer.appendChild(div);
 
                 div.style.cssText = 'box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);margin-bottom: 2vw; padding: 2vw';
+                contents.style.color = '#bfa013';
             })
         });
 }
