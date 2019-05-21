@@ -1,16 +1,20 @@
 const form = document.querySelector('form');
 const logCatchButton = document.querySelector('.logCatchButton');
 const fishesContainer = document.querySelector('.fishesContainer');
+const niceCatchPic = document.querySelector('.catchPic');
 const API_URL = "http://localhost:5000/fishes";
 
 form.style.display = 'none';
+niceCatchPic.style.display = 'none';
 
 // toggle form display
 logCatchButton.addEventListener('click', () => {
     if(form.style.display === 'none') {
         form.style.display = '';
+        niceCatchPic.style.display = 'none';
     } else {
         form.style.display = 'none';
+        niceCatchPic.style.display = '';
     }
 });
 
@@ -42,6 +46,7 @@ form.addEventListener('submit', (event) => {
         console.log(createdFish);
         form.style.display = 'none';
         form.reset();
+        niceCatchPic.style.display = '';
         fishesContainer.innerHTML = '';
         listAllFish(); 
     });
@@ -77,30 +82,5 @@ function listAllFish() {
             div.style.cssText = 'box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);margin-bottom: 2vw; padding: 2vw';
             contents.style.color = '#bfa013';
             
-
-            /*
-            fishes.forEach(fish => {
-                const div = document.createElement('div');
-                const header = document.createElement('h3');
-                const contents = document.createElement('p');
-                const created = document.createElement('small');
-
-                header.textContent = fish.fishtype + ' / ' + fish.weight + 'kg';
-                contents.textContent = fish.username;
-
-                // clean up date string
-                var date = new Date(fish.created);
-                var dateShort = date.toString().substring(0, 21);
-                created.textContent = dateShort;
-
-                div.appendChild(header);
-                div.appendChild(contents);
-                div.appendChild(created);
-                fishesContainer.appendChild(div);
-
-                div.style.cssText = 'box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);margin-bottom: 2vw; padding: 2vw';
-                contents.style.color = '#bfa013';
-            })
-            */
         });
 }

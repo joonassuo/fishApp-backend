@@ -22,13 +22,14 @@
                 <label for="fishtype">Fishtype</label>
                 <input class="u-full-width" type="text" id="fishtype" name="fishtype">
                 <label for="weight">Weight</label>
-                <input class="u-full-width" type="number" id="weight" name="weight">
+                <input class="u-full-width" type="number" min="0.1" step=".01" id="weight" name="weight">
                 <button class="button-primary">Submit 🐟</button>
             </form>
         </div>
-        <div class="fishesContainer">
-            
+        <div class="niceCatch">
+                <img class="catchPic" src="giphy.gif" alt="NICE CATCH!">
         </div>
+        <div class="fishesContainer"></div>
     </main>
     <script src="client.js"></script>
 </body>
